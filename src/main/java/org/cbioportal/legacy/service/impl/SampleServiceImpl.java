@@ -53,6 +53,13 @@ public class SampleServiceImpl implements SampleService {
   }
 
   @Override
+  @Cacheable(
+      cacheResolver = "staticRepositoryCacheOneResolver",
+      value = "SampleServiceImpl_getAllSamplesInStudy", // Cache name
+      key =
+          "#studyId + '_' + #projection + '_' + #pageSize + '_' + #pageNumber + '_' + #direction", // Cache key
+      condition = "@cacheEnabledConfig.isEnabled()" // Only cache if caching is enabled
+      )
   public List<Sample> getAllSamplesInStudy(
       String studyId,
       String projection,
