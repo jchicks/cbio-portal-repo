@@ -110,3 +110,4 @@ security.properties
 *.crt
 *.key
 *~
+dev/cbio_localhost_dump.sql
