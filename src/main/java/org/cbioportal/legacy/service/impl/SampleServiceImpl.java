@@ -53,6 +53,9 @@ public class SampleServiceImpl implements SampleService {
   }
 
   @Override
+  @Cacheable(
+      cacheResolver = "staticRepositoryCacheOneResolver",
+      condition = "@cacheEnabledConfig.getEnabled()")
   public List<Sample> getAllSamplesInStudy(
       String studyId,
       String projection,
@@ -72,6 +75,9 @@ public class SampleServiceImpl implements SampleService {
   }
 
   @Override
+  @Cacheable(
+      cacheResolver = "staticRepositoryCacheOneResolver",
+      condition = "@cacheEnabledConfig.getEnabled()")
   public BaseMeta getMetaSamplesInStudy(String studyId) throws StudyNotFoundException {
 
     studyService.getStudy(studyId);

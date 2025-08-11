@@ -12,7 +12,8 @@ services:
       MYSQL_ROOT_PASSWORD: somepassword
     volumes:
       - $PWD/../src/main/resources/db-scripts/cgds.sql:/docker-entrypoint-initdb.d/cgds.sql:ro
-      - $PWD/../src/test/resources/seed_mini.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+#      - $PWD/../src/test/resources/seed_mini.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+      - $PWD/cbio_localhost_dump.sql:/docker-entrypoint-initdb.d/seed.sql:ro
     ports:
       - 3306:3306
   cbioportal-session:
@@ -25,7 +26,7 @@ services:
     depends_on:
       - cbioportal-session-database
     ports:
-      - 5000:5000
+      - 5001:5000
     networks:
       - cbio-net
   cbioportal-session-database:
